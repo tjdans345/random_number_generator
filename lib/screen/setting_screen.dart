@@ -13,6 +13,7 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   double maxNumber = 1000;
+  double originalNumber = 1000;
 
   // SettingScreen 이 생성될 때 initState 가 불린다.
   // State 가 생성될 때 가장 먼저 실행이 된다.
@@ -20,6 +21,7 @@ class _SettingScreenState extends State<SettingScreen> {
   void initState() {
     super.initState();
     maxNumber = widget.maxNumber.toDouble();
+    originalNumber = maxNumber;
   }
 
   @override
@@ -33,7 +35,11 @@ class _SettingScreenState extends State<SettingScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _Body(maxNumber: maxNumber),
-              _Fotter(maxNumber: maxNumber, onSliderChanged: onSliderChanged, onButtonPressed: onButtonPressed,)
+              _Fotter(
+                maxNumber: maxNumber,
+                onSliderChanged: onSliderChanged,
+                onButtonPressed: onButtonPressed,
+                onButtonCancel: onButtonCancel,)
               
             ],
           ),
@@ -47,6 +53,12 @@ class _SettingScreenState extends State<SettingScreen> {
       // pop() 에 파라미터로 넘겨주면 전 페이지에서 현재 페이지의 데이터를 사용가능하다.
       Navigator.of(context).pop(maxNumber.toInt());
   }
+  void onButtonCancel() {
+    // 이전 페이지로 돌아가면서 파라미터로 데이터 넘겨주기
+    // pop() 에 파라미터로 넘겨주면 전 페이지에서 현재 페이지의 데이터를 사용가능하다.
+    Navigator.of(context).pop(originalNumber.toInt());
+  }
+
 
   void onSliderChanged(double val) {
     setState((){
@@ -73,8 +85,17 @@ class _Fotter extends StatelessWidget {
   final double maxNumber;
   final ValueChanged<double>? onSliderChanged;
   final VoidCallback onButtonPressed;
+  final VoidCallback onButtonCancel;
 
-  const _Fotter({Key? key, required this.maxNumber,required this.onSliderChanged, required this.onButtonPressed}) : super(key: key);
+
+
+  const _Fotter({
+    Key? key,
+    required this.maxNumber,
+    required this.onSliderChanged,
+    required this.onButtonPressed,
+    required this.onButtonCancel
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +109,32 @@ class _Fotter extends StatelessWidget {
             onChanged: onSliderChanged
         ),
         ElevatedButton(
+            onPressed: onButtonCancel,
+            style: ElevatedButton.styleFrom(
+                primary: Colors.amber
+            ),
+            child: const Text(
+              '돌아가기 !!!',
+              style: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold
+              ),
+            )
+        ),
+        ElevatedButton(
             onPressed: onButtonPressed,
             style: ElevatedButton.styleFrom(
                 primary: RED_COLOR
             ),
-            child: Text('저장 !!!'))
+            child: const Text(
+              '저장 !!!',
+              style: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.bold
+            ),
+            )
+        ),
+
       ],
     );
   }
