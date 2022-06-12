@@ -1,16 +1,18 @@
 # random_number_generator
 
-A new Flutter project.
+## component : 
+공통코드 관리를 위한 컴포넌트 
 
-## Getting Started
+## constant : 
+프로젝트 내부에서 사용하는 상수값 관리 
 
-This project is a starting point for a Flutter application.
+## 펑셔널 코드를 활용 
+코드리팩토링 진행함 
 
-A few resources to get you started if this is your first Flutter project:
+## 네비게이트 위젯
+네비게이트 위젯을 사용하여 페이지이동 및 파라미터(데이터) 주고받기 진행
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
