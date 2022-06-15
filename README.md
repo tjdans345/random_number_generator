@@ -1,7 +1,7 @@
 # random_number_generator
 
 ## component : 
-공통코드 관리를 위한 컴포넌트 
+공통코드 관리를 위한 컴포넌트 설정
 
 ## constant : 
 프로젝트 내부에서 사용하는 상수값 관리 
